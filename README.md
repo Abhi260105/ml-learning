@@ -899,7 +899,7 @@ This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) 
 
 ## 📞 Contact & Support
 
-- 📧 **Email**: your.email@example.com
+- 📧 **Email**: abhishekmahadule190@gmail.com
 - 💼 **LinkedIn**: [Your LinkedIn](https://linkedin.com/in/yourprofile)
 - 🐙 **GitHub**: [@yourusername](https://github.com/yourusername)
 - 📝 **Medium**: [Your Medium](https://medium.com/@yourusername)
