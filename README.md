@@ -114,13 +114,13 @@ heart-disease-prediction/
 │   │   ├── Outlier detection
 │   │   └── Visualization suite
 │   │
-│   └── model_training.ipynb      # Model Development
-│       ├── Data preprocessing
-│       ├── Feature engineering
-│       ├── Model training
-│       ├── Hyperparameter tuning
-│       ├── Model evaluation
-│       └── Results visualization
+│   |     
+│   |   ├── Data preprocessing
+│   |   |── Feature engineering
+│   |   ├── Model training
+│   |   ├── Hyperparameter tuning
+│   |   ├── Model evaluation
+│   └── |  Results visualization
 │
 ├── README.md                      # Project documentation (this file)
 ├── requirements.txt               # Python dependencies
