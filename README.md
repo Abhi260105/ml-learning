@@ -16,7 +16,7 @@
 
 ---
 
-![ML Pipeline](images/ml-pipeline-flowchart.png)
+![ML Pipeline](https://github.com/Abhi260105/ml-learning/blob/main/ml-pipeline-flowchart.png)
 
 *Complete ML pipeline: 6 models trained including Decision Tree and KNN*
 
