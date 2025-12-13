@@ -16,9 +16,9 @@
 
 ---
 
-![ML Pipeline](https://via.placeholder.com/800x200/ffffff/e74c3c?text=EDA+→+Preprocessing+→+Feature+Engineering+→+Model+Training+→+Evaluation)
+![ML Pipeline](images/ml-pipeline-flowchart.png)
 
-*End-to-end ML pipeline from raw data to production-ready model*
+*Complete ML pipeline: 6 models trained including Decision Tree and KNN*
 
 </div>
 
@@ -114,13 +114,13 @@ heart-disease-prediction/
 │   │   ├── Outlier detection
 │   │   └── Visualization suite
 │   │
-│   |     
-│   |   ├── Data preprocessing
-│   |   |── Feature engineering
-│   |   ├── Model training
-│   |   ├── Hyperparameter tuning
-│   |   ├── Model evaluation
-│   └── |  Results visualization
+│   └── model_training.ipynb      # Model Development
+│       ├── Data preprocessing
+│       ├── Feature engineering
+│       ├── Model training
+│       ├── Hyperparameter tuning
+│       ├── Model evaluation
+│       └── Results visualization
 │
 ├── README.md                      # Project documentation (this file)
 ├── requirements.txt               # Python dependencies
@@ -498,15 +498,17 @@ print(feature_importance.head(10))
 | Model | Type | Hyperparameters | Use Case |
 |-------|------|-----------------|----------|
 | **Logistic Regression** | Linear | C, penalty, solver | Baseline, interpretability |
+| **Decision Tree** | Tree-based | max_depth, min_samples_split | Interpretable rules, feature importance |
 | **Random Forest** | Ensemble | n_estimators, max_depth | Non-linear, feature importance |
-| **XGBoost** | Boosting | learning_rate, max_depth | High performance |
-| **Support Vector Machine** | Kernel-based | C, kernel, gamma | Non-linear boundaries |
-| **K-Nearest Neighbors** | Instance-based | n_neighbors, weights | Simple, interpretable |
+| **XGBoost** | Boosting | learning_rate, max_depth | High performance, gradient boosting |
+| **Support Vector Machine (SVM)** | Kernel-based | C, kernel, gamma | Non-linear boundaries |
+| **K-Nearest Neighbors (KNN)** | Instance-based | n_neighbors, weights, metric | Simple, non-parametric |
 
 ### Training Pipeline
 
 ```python
 from sklearn.linear_model import LogisticRegression
+from sklearn.tree import DecisionTreeClassifier
 from sklearn.ensemble import RandomForestClassifier
 from xgboost import XGBClassifier
 from sklearn.svm import SVC
@@ -516,10 +518,11 @@ from sklearn.model_selection import cross_val_score
 # Initialize models
 models = {
     'Logistic Regression': LogisticRegression(random_state=42, max_iter=1000),
+    'Decision Tree': DecisionTreeClassifier(random_state=42, max_depth=5),
     'Random Forest': RandomForestClassifier(random_state=42, n_estimators=100),
-    'XGBoost': XGBClassifier(random_state=42, use_label_encoder=False),
-    'SVM': SVC(random_state=42, probability=True),
-    'KNN': KNeighborsClassifier(n_neighbors=5)
+    'XGBoost': XGBClassifier(random_state=42, use_label_encoder=False, eval_metric='logloss'),
+    'SVM': SVC(random_state=42, probability=True, kernel='rbf'),
+    'KNN': KNeighborsClassifier(n_neighbors=5, weights='distance')
 }
 
 # Train and evaluate
@@ -675,6 +678,7 @@ plt.show()
 |-------|----------|-----------|--------|----------|---------|
 | **Random Forest** | **0.876** | **0.883** | **0.889** | **0.886** | **0.934** |
 | XGBoost | 0.870 | 0.875 | 0.884 | 0.879 | 0.928 |
+| Decision Tree | 0.821 | 0.828 | 0.835 | 0.831 | 0.892 |
 | Logistic Regression | 0.854 | 0.862 | 0.864 | 0.863 | 0.915 |
 | SVM | 0.848 | 0.855 | 0.859 | 0.857 | 0.910 |
 | KNN | 0.832 | 0.838 | 0.847 | 0.842 | 0.898 |
@@ -872,13 +876,16 @@ pip install -r requirements.txt
 
 ### Areas for Improvement
 
-- [ ] Add deep learning models (Neural Networks)
-- [ ] Implement ensemble methods (Stacking, Voting)
-- [ ] Add SMOTE for class imbalance
-- [ ] Create Flask/FastAPI deployment
-- [ ] Add explainability dashboard (SHAP, LIME)
-- [ ] Implement automated ML pipeline (MLflow)
-- [ ] Add unit tests and CI/CD
+- [ ] Add deep learning models (Neural Networks, LSTM)
+- [ ] Implement ensemble methods (Stacking, Voting Classifier)
+- [ ] Add SMOTE for class imbalance handling
+- [ ] Create Flask/FastAPI REST API deployment
+- [ ] Add model explainability dashboard (SHAP, LIME)
+- [ ] Implement automated ML pipeline (MLflow, DVC)
+- [ ] Add unit tests and CI/CD pipeline
+- [ ] Hyperparameter tuning for Decision Tree and KNN
+- [ ] Feature selection with Recursive Feature Elimination
+- [ ] Cross-validation with stratified K-fold
 
 ---
 
